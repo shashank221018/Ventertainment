@@ -1,0 +1,335 @@
+@font-face {
+  src: url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 88vh;
+}
+
+@media (max-width: 678px){
+  html, body {
+  height: 74vh;
+}
+}
+
+.slider-container {
+  position: relative;
+  height: 80%;
+  margin:auto;
+}
+
+.slider-control {
+  z-index: 2;
+  position: absolute;
+  width: 12%;
+  height: 100%;
+  transition: opacity 0.3s;
+  will-change: opacity;
+  opacity: 0;
+}
+
+/*Left and Right Slider Contol*/
+.slider-control.left {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+}
+.slider-control.right {
+  right: 0;
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/*Three Dots---Slider Controller*/
+.slider-pagi {
+  position: absolute;
+  z-index: 3; 
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+}
+.slider-pagi__elem {
+  z-index: 100;  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+@media(max-width: 768px){
+  .slider-pagi__elem {
+    bottom: 70px;
+     width: 10px;
+      height: 10px;
+
+  }
+}
+
+/*inside three dots -aimation */  
+.slider-pagi__elem:before {
+
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  transform: translate(-50%, -50%) scale(0);
+}
+.slider-pagi__elem.active:before, .slider-pagi__elem:hover:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media(max-width: 768px){
+.slider-pagi__elem:before{
+width: 10px;
+      height: 10px;}
+}
+
+.slider {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+}
+.slider.animating {
+  transition: transform 0.5s;
+  will-change: transform;
+}
+.slider.animating .slide__bg {
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.slide.active .slide__overlay,
+.slide.active .slide__text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide__bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  will-change: transform;
+}
+
+@media (max-width: 768px){
+  .slide__bg {
+  position: absolute;
+  width: 100%;
+  height: 70vh;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  will-change: transform;
+}
+}
+
+/*Slide Cutter 1*/
+.slide:nth-child(1) {
+  left: 0;
+}
+.slide:nth-child(1) .slide__bg {
+  left: 0;
+  background-image: url("../images/b4.jpg");
+  
+}
+.slide:nth-child(1) .slide__overlay-path {
+  fill: red;
+}
+
+
+/*Slider Cutter 2*/
+@media (max-width: 768px) {
+.slide:nth-child(1) .slide__bg {
+  left: 0;
+  background-size: 100% 50%;
+  
+}
+
+.slide:nth-child(2) .slide__bg {
+  left: -50%;
+  background-size: 100% 50%;
+  }
+
+.slide:nth-child(3) .slide__bg {
+  left: -50%;
+  background-size: 100% 50%;
+  }
+
+
+
+  .slide:nth-child(1) .slide__text {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+.slide:nth-child(2) {
+  left: 100%;
+}
+.slide:nth-child(2) .slide__bg {
+  left: -50%;
+  background-image: url("../images/b7.jpg");
+}
+.slide:nth-child(2) .slide__overlay-path {
+ fill: blue;
+}
+
+/*Slider Cutter 3*/
+@media (max-width: 768px) {
+  .slide:nth-child(2) .slide__text {
+    background-color: rgba(0, 0, 0,  0.5);
+    background-size: 100% 50%;
+  }
+}
+.slide:nth-child(3) {
+  left: 200%;
+}
+.slide:nth-child(3) .slide__bg {
+  left: -100%;
+  background-image: url("../images/b7.jpg");
+}
+.slide:nth-child(3) .slide__overlay-path {
+	fill: yellow;
+}
+
+@media (max-width: 768px) {
+	/*Opacity For left side design*/
+  .slide:nth-child(3) .slide__text {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+
+}
+.slide:nth-child(4) {
+  left: 300%;
+}
+.slide:nth-child(4) .slide__bg {
+  left: -150%;
+  background-image: url("../images/b7.jpg");
+}
+.slide:nth-child(4) .slide__overlay-path {
+ 	fill: red;
+}
+
+@media (max-width: 768px) {
+  .slide:nth-child(4) .slide__text {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.slide__content {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide__overlay {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  min-height: 810px;
+  transition: transform 0.5s 0.5s, opacity 0.2s 0.5s;
+  will-change: transform, opacity;
+  transform: translate3d(-20%, 0, 0);
+  opacity: 0;
+}
+@media (max-width: 768px) {
+  .slide__overlay {
+    display: none;
+  }
+}
+.slide__overlay path {
+  opacity: 0.3;
+}
+*/*slide Texts*/
+.slide__text {
+  position: absolute;
+  width: 30%;
+  bottom: 19%;
+  left: 6%;
+  color: #fff;
+  transition: transform 0.5s 0.8s, opacity 0.5s 0.8s;
+  will-change: transform, opacity;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+@media (max-width: 768px) {
+  .slide__text {
+    bottom: 0;
+    left: 0;	
+    width: 100%;
+    height: 8rem;
+    text-align: center;
+    transform: translateY(50%);
+    transition: transform 0.5s 0.5s, opacity 0.5s 0.5s;
+    padding: 0 1rem;
+  }
+}
+.slide__text-heading {
+  font-family: "Polar", Helvetica, Arial, sans-serif;
+  font-size: 50px;
+}
+@media (max-width: 768px) {
+  .slide__text-heading {
+    line-height: 3rem;
+    font-size: 30px;
+  }
+}
+.slide__text-desc {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  margin-bottom: 0rem;
+}
+@media (max-width: 768px) {
+  .slide__text-desc {
+    display: none;
+  }
+}
+.slide__text-link {
+  z-index: 5;
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  perspective: 1000px;
+}
+@media (max-width: 768px) {
+  .slide__text-link {
+    margin: -2rem 0 8rem;
+  }
+}
+.slide__text-link:before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  transform-origin: 50% 100%;
+  transform: rotateX(-85deg);
+  transition: transform 0.3s;
+  will-change: transform;
+}
+.slide__text-link:hover:before {
+  transform: rotateX(0);
+}
